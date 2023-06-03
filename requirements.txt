@@ -2,4 +2,8 @@ kedro==0.18.5
 pytest==7.3.1
 setuptools==67.8.0
 numpy
-pandas
+pandas 
+kedro-viz
+kedro-datasets
+aiohttp
+requests

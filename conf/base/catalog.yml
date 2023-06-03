@@ -2,3 +2,18 @@
 #
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://kedro.readthedocs.io/en/stable/data/data_catalog.html
+remote-full-dataset-1:
+  type: pandas.CSVDataSet
+  filepath: https://storage.googleapis.com/gresearch/goemotions/data/full_dataset/goemotions_1.csv
+
+remote-full-dataset-2:
+  type: pandas.CSVDataSet
+  filepath: https://storage.googleapis.com/gresearch/goemotions/data/full_dataset/goemotions_2.csv
+
+remote-full-dataset-3:
+  type: pandas.CSVDataSet
+  filepath: https://storage.googleapis.com/gresearch/goemotions/data/full_dataset/goemotions_3.csv
+
+full-dataset:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/goemotions-full.csv

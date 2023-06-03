@@ -3,11 +3,11 @@
 ## Install
   
 ```bash 
-git clone https://github.com/mabuszka/deep-emotions.git
-# git clone git@github.com:mabuszka/deep-emotions.git
-cd deep-emotions
+git clone https://github.com/nerkulec/deepemotions.git
+# git clone git@github.com:nerkulec/deepemotions.git
+cd deepemotions
 conda env create --file conda.yml
-conda activate deep-emotions
+conda activate deepemotions
 pip install -r requirements.txt
 # Adding new package
 pip install <package>
