@@ -11,13 +11,13 @@ def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
         node(
             func=load_tokenizer,
-            inputs=None,
+            inputs="params:model_name",
             outputs="bert-tokenizer",
             name="load_tokenizer_node",
         ),
         node(
             func=load_model,
-            inputs=None,
+            inputs=["params:model_name", "params:num_labels"],
             outputs="bert-model",
             name="load_model_node",
         ),
