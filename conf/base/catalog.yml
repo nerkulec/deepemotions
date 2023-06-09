@@ -17,3 +17,12 @@ remote-full-dataset-3:
 full-dataset:
   type: pandas.CSVDataSet
   filepath: data/01_raw/goemotions-full.csv
+
+# model saved as a pickle
+bert-model:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/bert-base-uncased.pkl
+
+bert-tokenizer:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/bert-base-uncased.pkl
