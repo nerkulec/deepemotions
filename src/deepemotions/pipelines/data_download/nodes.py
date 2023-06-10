@@ -9,6 +9,8 @@ def download_data(*remote_datasets) -> None:
     """Download data from google API."""
     # Concatenate all the datasets
     full_dataset = pd.concat(remote_datasets)
+    print("Downloaded full datset of lenght:", len(full_dataset))
+
     return full_dataset
 
 

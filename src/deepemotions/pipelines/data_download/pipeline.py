@@ -12,7 +12,7 @@ def create_pipeline(**kwargs) -> Pipeline:
         node(
             func=download_data,
             inputs=["remote-full-dataset-1", "remote-full-dataset-2", "remote-full-dataset-3"],
-            outputs="full-dataset",
+            outputs="full-raw-dataset",
             name="download_data_node",
         )
     ])

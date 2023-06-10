@@ -14,9 +14,9 @@ remote-full-dataset-3:
   type: pandas.CSVDataSet
   filepath: https://storage.googleapis.com/gresearch/goemotions/data/full_dataset/goemotions_3.csv
 
-full-dataset:
+full-raw-dataset:
   type: pandas.CSVDataSet
-  filepath: data/01_raw/goemotions-full.csv
+  filepath: data/01_raw/goemotions-full-raw.csv
 
 # model saved as a pickle
 bert-model:
@@ -26,3 +26,15 @@ bert-model:
 bert-tokenizer:
   type: pickle.PickleDataSet
   filepath: data/06_models/bert-base-uncased.pkl
+
+# list of emotions 
+emotions-list:
+  type: text.TextDataSet
+  filepath: data/01_raw/emotions-list.txt
+
+formated_datest:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/formated_full.csv
+
+
+
