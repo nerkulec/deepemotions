@@ -1,0 +1,19 @@
+site_name: Deep Emotions Project Docs
+
+theme:
+  name: "material"
+  icon:
+    repo: fontawesome/brands/github
+
+nav:
+  - Homepage: index.md 
+  - Installation: instalation.md
+  - Documentation: 
+    - Pipelines:
+      - data download: data_download.md
+
+plugins:
+  - mkdocstrings
+  - search
+
+repo_url: https://github.com/nerkulec/deepemotions
