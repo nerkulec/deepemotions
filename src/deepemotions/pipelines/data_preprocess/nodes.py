@@ -5,7 +5,7 @@ def make_emotions_dicts(filtered_dataset):
         filtered_dataset (pandas.CSVDataSet): filtered dataset
 
     Returns:
-        tuple(dict(int: string), dict(string: int)): mapping from id to emotion name, and from emotion name to id
+        (tuple(dict(int: string), dict(string: int))): mapping from id to emotion name, and from emotion name to id
     """
     emotions = filtered_dataset["emotion"].unique()
     id_to_emotions_dict = {key: value for key, value in enumerate(emotions)}
@@ -20,7 +20,7 @@ def narrow_dataset(dataset):
         dataset (pandas.CSVDataSet): Dataset to be processed
 
     Returns:
-        pandas.CSVDataSet: narrowed dataset
+        (pandas.CSVDataSet): narrowed dataset
     """
     unnecesary_columns=["author", "subreddit", "link_id",
                         "parent_id", "created_utc", "rater_id"]
@@ -35,7 +35,7 @@ def group_dataset(narrowed_dateset):
         narrowed_dateset (pandas.CSVDataSet): dataset with only relevant columns
 
     Returns:
-        CSVDataSet: grouped dataset
+        (CSVDataSet): grouped dataset
     """
     grouped_dataset = narrowed_dateset.groupby(["id"])
     return grouped_dataset 
@@ -47,7 +47,7 @@ def drop_discordant_annotations(grouped_dataset):
         grouped_dataset (pandas.CSVDataSet): dataset grouped by comment id
 
     Returns:
-        pandas.CSVDataSet: pre filtered dataset
+        (pandas.CSVDataSet): pre filtered dataset
     """
     pre_filtered_dataset = grouped_dataset.sum().replace(0, None).melt(
         id_vars="text", var_name="emotion", value_name="num_rated",
@@ -63,7 +63,7 @@ def drop_unclear_annotations(pre_filtered_dataset):
         pre_filtered_dataset (pandas.CSVDataSet): pre filtered dataset
 
     Returns:
-        pandas.CSVDataSet: filtered dataset
+        (pandas.CSVDataSet): filtered dataset
     """
     filtered_dataset = pre_filtered_dataset[
         ~pre_filtered_dataset["emotion"].isin(["example_very_unclear"])]
@@ -78,14 +78,14 @@ def map_emotions(filtered_dataset, emotion_mapping):
         emotion_mapping (dict): mapping between emotion names and their ids.
 
     Returns:
-        CSVDataSet: mapped filtered dataset
+        (CSVDataSet): mapped filtered dataset
     """
     mapped_filtered_dataset = filtered_dataset.replace({"emotion" : emotion_mapping})
     return mapped_filtered_dataset
 
 def format_dataset(mapped_filterd_dataset):
     """Format dataset.
-    Formated dataset has columns:
+    Formated dataset has following columns:
         - text : text of the comment
         - emotion : numerical values of emotions annotated to comment
         - id : unique record identifier
@@ -94,7 +94,7 @@ def format_dataset(mapped_filterd_dataset):
         mapped_filterd_dataset (pandas.CSVDataSet): mapped and filtered dataset to format
 
     Returns:
-        pandas.CSVDataSet: formated dataset
+        (pandas.CSVDataSet): formated dataset
     """
     formated_dataset = mapped_filterd_dataset.drop("num_rated", axis = "columns")
     formated_dataset = formated_dataset.reset_index()
