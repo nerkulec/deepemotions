@@ -1,4 +1,3 @@
-## Data downloading
 Do preprocess data use data_preprocess pipeline by running
 ```
 kedro run --pipeline=data_preprocess

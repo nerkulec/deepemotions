@@ -10,8 +10,9 @@ nav:
   - Installation: instalation.md
   - Documentation: 
     - Pipelines:
-      - data download: data_download.md
-      - data preprocess: data_preprocess.md
+      - Data download: data_download.md
+      - Data preprocess: data_preprocess.md
+      - Model download: model_download.md
 
 plugins:
   - mkdocstrings

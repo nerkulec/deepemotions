@@ -1,4 +1,3 @@
-## Data downloading
 To download data use data_downloading pipeline by running
 ```
 kedro run --pipeline=data_downloading
