@@ -11,6 +11,7 @@ nav:
   - Documentation: 
     - Pipelines:
       - data download: data_download.md
+      - data preprocess: data_preprocess.md
 
 plugins:
   - mkdocstrings
