@@ -17,7 +17,11 @@ class EmotionDataset(torch.utils.data.Dataset):
         self.y = torch.tensor(df[emotions].values, dtype = torch.float32)
     
     def __getitem__(self, idx):
-        return self.X[idx], self.y[idx]
+        return {
+            'input_ids': self.X['input_ids'][idx],
+            'attention_mask': self.X['attention_mask'][idx],
+            'token_type_ids': self.X['token_type_ids'][idx],
+        }, self.y[idx]
     
     def __len__(self):
         return len(self.X)

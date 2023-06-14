@@ -9,30 +9,30 @@ class EmotionModel(pl.LightningModule):
         self.dropout = torch.nn.Dropout(0.3)
         self.out = torch.nn.Linear(768, 28)
 
-    def forward(self, text):
-        output = self.bert(text)
+    def forward(self, x):
+        output = self.bert(**x)
         output = self.dropout(output.pooler_output)
         output = self.out(output)
-        return torch.functional.sigmoid(output)
+        return torch.sigmoid(output)
 
     def training_step(self, batch, batch_idx):
         x, y = batch
-        y_hat = self(**x)
-        loss = torch.functional.binary_cross_entropy(y_hat, y)
+        y_hat = self(x)
+        loss = torch.nn.functional.binary_cross_entropy(y_hat, y)
         self.log('train_loss', loss, on_step = True, on_epoch = True, prog_bar = True, logger = True)
         return loss
     
     def validation_step(self, batch, batch_idx):
         x, y = batch
         y_hat = self(x)
-        loss = torch.functional.binary_cross_entropy(y_hat, y)
+        loss = torch.nn.functional.binary_cross_entropy(y_hat, y)
         self.log('val_loss', loss, on_step = True, on_epoch = True, prog_bar = True, logger = True)
         return loss
     
     def test_step(self, batch, batch_idx):
         x, y = batch
         y_hat = self(x)
-        loss = torch.functional.binary_cross_entropy(y_hat, y)
+        loss = torch.nn.functional.binary_cross_entropy(y_hat, y)
         self.log('test_loss', loss, on_step = True, on_epoch = True, prog_bar = True, logger = True)
         return loss
     
