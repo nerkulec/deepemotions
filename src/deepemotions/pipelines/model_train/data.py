@@ -3,9 +3,16 @@ import torch
 from sklearn.model_selection import train_test_split
 
 class EmotionDataset(torch.utils.data.Dataset):
-    def __init__(self, df):
+    def __init__(self, df, tokenizer):
         text = df['text'].values
-        self.X = text
+        # self.X = text
+        self.X = tokenizer(
+            text.tolist(),
+            padding = True,
+            truncation = True,
+            max_length = 512,
+            return_tensors = 'pt'
+        )
         emotions = df.columns[2:]
         self.y = torch.tensor(df[emotions].values, dtype = torch.float32)
     
@@ -16,7 +23,7 @@ class EmotionDataset(torch.utils.data.Dataset):
         return len(self.X)
     
 class EmotionDataModule(pl.LightningDataModule):
-    def __init__(self, df, batch_size = 32):
+    def __init__(self, df, tokenizer, batch_size = 32):
         super().__init__()
 
         train_df, val_df = train_test_split(df, test_size = 0.3, random_state = 42)
@@ -25,10 +32,12 @@ class EmotionDataModule(pl.LightningDataModule):
         self.val_df = val_df
         self.test_df = test_df
         self.batch_size = batch_size
+        self.tokenizer = tokenizer
     
     def setup(self, stage = None):
-        self.train_dataset = EmotionDataset(self.train_df)
-        self.val_dataset = EmotionDataset(self.val_df)
+        self.train_dataset = EmotionDataset(self.train_df, self.tokenizer)
+        self.val_dataset = EmotionDataset(self.val_df, self.tokenizer)
+        self.test_dataset = EmotionDataset(self.test_df, self.tokenizer)
     
     def train_dataloader(self):
         return torch.utils.data.DataLoader(

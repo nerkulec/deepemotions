@@ -10,7 +10,7 @@ def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
         node(
             func=get_datamodule,
-            inputs="clean-dataset",
+            inputs=["clean-dataset", "bert-tokenizer"],
             outputs="datamodule",
             name="get_datamodule_node",
         ),

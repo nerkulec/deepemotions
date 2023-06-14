@@ -2,8 +2,8 @@ import pytorch_lightning as pl
 from .data import EmotionDataModule
 from .model import EmotionModel
 
-def get_datamodule(df):
-    return EmotionDataModule(df)
+def get_datamodule(df, tokenizer):
+    return EmotionDataModule(df, tokenizer)
 
 def get_model(pretrained_bert):
     return EmotionModel(pretrained_bert)

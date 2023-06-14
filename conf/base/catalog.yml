@@ -25,11 +25,11 @@ bert-model:
 
 trained-model:
   type: pickle.PickleDataSet
-  filepath: data/06_models/bert-base-uncased.pkl
+  filepath: data/06_models/bert-trained-uncased.pkl
 
 bert-tokenizer:
   type: pickle.PickleDataSet
-  filepath: data/06_models/bert-base-uncased.pkl
+  filepath: data/06_models/bert-tokenizer-uncased.pkl
 
 # list of emotions 
 emotions-list:

@@ -17,7 +17,7 @@ class EmotionModel(pl.LightningModule):
 
     def training_step(self, batch, batch_idx):
         x, y = batch
-        y_hat = self(x)
+        y_hat = self(**x)
         loss = torch.functional.binary_cross_entropy(y_hat, y)
         self.log('train_loss', loss, on_step = True, on_epoch = True, prog_bar = True, logger = True)
         return loss
