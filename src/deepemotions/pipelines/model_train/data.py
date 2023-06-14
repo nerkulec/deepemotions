@@ -1,0 +1,56 @@
+import pytorch_lightning as pl
+import torch
+from sklearn.model_selection import train_test_split
+
+class EmotionDataset(torch.utils.data.Dataset):
+    def __init__(self, df):
+        text = df['text'].values
+        self.X = text
+        emotions = df.columns[2:]
+        self.y = torch.tensor(df[emotions].values, dtype = torch.float32)
+    
+    def __getitem__(self, idx):
+        return self.X[idx], self.y[idx]
+    
+    def __len__(self):
+        return len(self.X)
+    
+class EmotionDataModule(pl.LightningDataModule):
+    def __init__(self, df, batch_size = 32):
+        super().__init__()
+
+        train_df, val_df = train_test_split(df, test_size = 0.3, random_state = 42)
+        val_df, test_df = train_test_split(val_df, test_size = 0.5, random_state = 42)
+        self.train_df = train_df
+        self.val_df = val_df
+        self.test_df = test_df
+        self.batch_size = batch_size
+    
+    def setup(self, stage = None):
+        self.train_dataset = EmotionDataset(self.train_df)
+        self.val_dataset = EmotionDataset(self.val_df)
+    
+    def train_dataloader(self):
+        return torch.utils.data.DataLoader(
+            self.train_dataset,
+            batch_size = self.batch_size,
+            shuffle = True,
+            num_workers = 4
+        )
+    
+    def val_dataloader(self):
+        return torch.utils.data.DataLoader(
+            self.val_dataset,
+            batch_size = self.batch_size,
+            shuffle = False,
+            num_workers = 4
+        )
+    
+    def test_dataloader(self):
+        return torch.utils.data.DataLoader(
+            self.val_dataset,
+            batch_size = self.batch_size,
+            shuffle = False,
+            num_workers = 4
+        )
+

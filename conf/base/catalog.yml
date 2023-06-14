@@ -23,6 +23,10 @@ bert-model:
   type: pickle.PickleDataSet
   filepath: data/06_models/bert-base-uncased.pkl
 
+trained-model:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/bert-base-uncased.pkl
+
 bert-tokenizer:
   type: pickle.PickleDataSet
   filepath: data/06_models/bert-base-uncased.pkl
@@ -32,9 +36,9 @@ emotions-list:
   type: text.TextDataSet
   filepath: data/01_raw/emotions-list.txt
 
-formated_datest:
+clean-dataset:
   type: pandas.CSVDataSet
-  filepath: data/02_intermediate/formated_full.csv
+  filepath: data/02_intermediate/clean.csv
 
 
 
