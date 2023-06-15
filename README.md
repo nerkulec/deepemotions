@@ -21,6 +21,40 @@ pipreqs .
 kedro run
 ```
 
+### Download data
+
+```
+kedro run --pipeline=data_download
+```
+
+### Preprocess data
+
+Assuming the data is already downloded
+```
+kedro run --pipeline=data_preprocess
+```
+
+### Download pre-trained model
+
+```
+kedro run --pipeline=model_download
+```
+
+### Train model
+
+Assuming the pre-trained model is already downloded and data is already downloaded and preprocessed 
+```
+kedro run --pipeline=model_train
+```
+
+### Logging to wandb
+
+If not already logged before running the training log in to Wandb to save logs.
+You will need to input your key.
+
+```
+wandb login
+```
 
 ## Overview
 

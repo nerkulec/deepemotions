@@ -27,7 +27,7 @@ class EmotionDataset(torch.utils.data.Dataset):
         return len(self.X)
     
 class EmotionDataModule(pl.LightningDataModule):
-    def __init__(self, df, tokenizer, batch_size = 32):
+    def __init__(self, df, tokenizer, batch_size = 16):
         super().__init__()
 
         train_df, val_df = train_test_split(df, test_size = 0.3, random_state = 42)
