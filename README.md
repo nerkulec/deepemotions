@@ -1,5 +1,5 @@
 # deepemotions
-**Team: Magdalena Buszka, Bartosz Brzoza**  
+**Team: Magdalena Buszka, Bartosz Brzoza, Martyna Firgolska**  
 
 ## Install
   
