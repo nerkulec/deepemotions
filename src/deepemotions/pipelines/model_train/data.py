@@ -3,6 +3,10 @@ import torch
 from sklearn.model_selection import train_test_split
 
 class EmotionDataset(torch.utils.data.Dataset):
+    """
+    Emotion Dataset class.
+    Inherits from pythorch Dataset
+    """
     def __init__(self, df, tokenizer):
         text = df['text'].values
         # self.X = text
@@ -27,7 +31,18 @@ class EmotionDataset(torch.utils.data.Dataset):
         return len(self.X)
     
 class EmotionDataModule(pl.LightningDataModule):
+    """EmotionDataModule class.
+    Inherits from pythorch LightningDataModule
+    """
     def __init__(self, df, tokenizer, batch_size = 32):
+        """Initializes data module.
+        Splits dataset into train/test/val.
+
+        Args:
+            df (Dataset): dataset 
+            tokenizer (BertTokenizer): tokenizer
+            batch_size (int, optional): Size of batch. Defaults to 32.
+        """
         super().__init__()
 
         train_df, val_df = train_test_split(df, test_size = 0.3, random_state = 42)
@@ -39,11 +54,13 @@ class EmotionDataModule(pl.LightningDataModule):
         self.tokenizer = tokenizer
     
     def setup(self, stage = None):
+        """Performs setup"""
         self.train_dataset = EmotionDataset(self.train_df, self.tokenizer)
         self.val_dataset = EmotionDataset(self.val_df, self.tokenizer)
         self.test_dataset = EmotionDataset(self.test_df, self.tokenizer)
     
     def train_dataloader(self):
+        """Dataloader for training"""
         return torch.utils.data.DataLoader(
             self.train_dataset,
             batch_size = self.batch_size,
@@ -52,6 +69,7 @@ class EmotionDataModule(pl.LightningDataModule):
         )
     
     def val_dataloader(self):
+        """Dataloader for validation"""
         return torch.utils.data.DataLoader(
             self.val_dataset,
             batch_size = self.batch_size,
@@ -60,6 +78,7 @@ class EmotionDataModule(pl.LightningDataModule):
         )
     
     def test_dataloader(self):
+        """Dataloader for testing"""
         return torch.utils.data.DataLoader(
             self.val_dataset,
             batch_size = self.batch_size,

@@ -3,7 +3,13 @@ import torch
 import pytorch_lightning as pl
 
 class EmotionModel(pl.LightningModule):
+    """EmotionModel class. Inherits from pytorch LightningModule."""
     def __init__(self, pretrained_bert):
+        """Initializes model
+
+        Args:
+            pretrained_bert (BertModel): pre-trained bert model
+        """
         super().__init__()
         self.bert = pretrained_bert
         self.dropout = torch.nn.Dropout(0.3)

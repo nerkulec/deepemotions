@@ -1,17 +1,14 @@
-# Welcome to MkDocs
+# Welcome to DeepEmotions
+**Team: Magdalena Buszka, Bartosz Brzoza, Martyna Firgolska**  
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
-## Commands
+## Run project
+```
+kedro run
+```
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
 
-## Project layout
+## Overview
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+The aim of this project is to classify emotions associated with comments.
+For training we used google's [goemotions](https://github.com/google-research/google-research/tree/master/goemotions) dataset. 

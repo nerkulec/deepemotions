@@ -13,6 +13,7 @@ nav:
       - Data download: data_download.md
       - Data preprocess: data_preprocess.md
       - Model download: model_download.md
+      - Model training: model_train.md
 
 plugins:
   - mkdocstrings
